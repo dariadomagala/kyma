@@ -54,13 +54,13 @@ require (
 	k8s.io/apimachinery v0.18.3
 	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
 	k8s.io/kube-openapi v0.0.0-20200410163147-594e756bea31 // indirect
-	k8s.io/utils v0.0.0-20200324210504-a9aa75ae1b89 // indirect
 	knative.dev/eventing v0.12.0
 	knative.dev/pkg v0.0.0-20200113182502-b8dc5fbc6d2f
 	launchpad.net/gocheck v0.0.0-20140225173054-000000000087 // indirect
 )
 
 replace (
-	github.com/kyma-project/kyma v0.5.1-0.20200312141804-8069217e0f42 => github.com/dariadomagala/kyma v0.0.0-20200728101114-d64da241a437
+	github.com/kyma-project/kyma => github.com/dariadomagala/kyma v0.0.0-20200728101114-d64da241a437
 	github.com/kyma-project/kyma/components/application-broker => github.com/dariadomagala/kyma/components/application-broker v0.0.0-20200728101114-d64da241a437
+	k8s.io/client-go => k8s.io/client-go v0.18.3
 )

@@ -3,6 +3,7 @@
 package v1alpha1
 
 import (
+	"context"
 	"time"
 
 	v1alpha1 "github.com/kyma-project/kyma/components/application-broker/pkg/apis/applicationconnector/v1alpha1"
@@ -54,7 +55,7 @@ func (c *eventActivations) Get(name string, options v1.GetOptions) (result *v1al
 		Resource("eventactivations").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -71,7 +72,7 @@ func (c *eventActivations) List(opts v1.ListOptions) (result *v1alpha1.EventActi
 		Resource("eventactivations").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -98,7 +99,7 @@ func (c *eventActivations) Create(eventActivation *v1alpha1.EventActivation) (re
 		Namespace(c.ns).
 		Resource("eventactivations").
 		Body(eventActivation).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -111,7 +112,7 @@ func (c *eventActivations) Update(eventActivation *v1alpha1.EventActivation) (re
 		Resource("eventactivations").
 		Name(eventActivation.Name).
 		Body(eventActivation).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -123,7 +124,7 @@ func (c *eventActivations) Delete(name string, options *v1.DeleteOptions) error 
 		Resource("eventactivations").
 		Name(name).
 		Body(options).
-		Do().
+		Do(context.TODO()).
 		Error()
 }
 
@@ -139,7 +140,7 @@ func (c *eventActivations) DeleteCollection(options *v1.DeleteOptions, listOptio
 		VersionedParams(&listOptions, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(options).
-		Do().
+		Do(context.TODO()).
 		Error()
 }
 
@@ -152,7 +153,7 @@ func (c *eventActivations) Patch(name string, pt types.PatchType, data []byte, s
 		SubResource(subresources...).
 		Name(name).
 		Body(data).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }

@@ -3,6 +3,7 @@
 package v1alpha1
 
 import (
+	"context"
 	"time"
 
 	v1alpha1 "github.com/kyma-project/kyma/components/application-broker/pkg/apis/applicationconnector/v1alpha1"
@@ -54,7 +55,7 @@ func (c *applicationMappings) Get(name string, options v1.GetOptions) (result *v
 		Resource("applicationmappings").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -71,7 +72,7 @@ func (c *applicationMappings) List(opts v1.ListOptions) (result *v1alpha1.Applic
 		Resource("applicationmappings").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -98,7 +99,7 @@ func (c *applicationMappings) Create(applicationMapping *v1alpha1.ApplicationMap
 		Namespace(c.ns).
 		Resource("applicationmappings").
 		Body(applicationMapping).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -111,7 +112,7 @@ func (c *applicationMappings) Update(applicationMapping *v1alpha1.ApplicationMap
 		Resource("applicationmappings").
 		Name(applicationMapping.Name).
 		Body(applicationMapping).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
@@ -123,7 +124,7 @@ func (c *applicationMappings) Delete(name string, options *v1.DeleteOptions) err
 		Resource("applicationmappings").
 		Name(name).
 		Body(options).
-		Do().
+		Do(context.TODO()).
 		Error()
 }
 
@@ -139,7 +140,7 @@ func (c *applicationMappings) DeleteCollection(options *v1.DeleteOptions, listOp
 		VersionedParams(&listOptions, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(options).
-		Do().
+		Do(context.TODO()).
 		Error()
 }
 
@@ -152,7 +153,7 @@ func (c *applicationMappings) Patch(name string, pt types.PatchType, data []byte
 		SubResource(subresources...).
 		Name(name).
 		Body(data).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
