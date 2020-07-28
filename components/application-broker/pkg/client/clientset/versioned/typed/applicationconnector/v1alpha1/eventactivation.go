@@ -89,7 +89,7 @@ func (c *eventActivations) Watch(opts v1.ListOptions) (watch.Interface, error) {
 		Resource("eventactivations").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Watch()
+		Watch(context.TODO())
 }
 
 // Create takes the representation of a eventActivation and creates it.  Returns the server's representation of the eventActivation, and an error, if there is any.

@@ -89,7 +89,7 @@ func (c *applicationMappings) Watch(opts v1.ListOptions) (watch.Interface, error
 		Resource("applicationmappings").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Watch()
+		Watch(context.TODO())
 }
 
 // Create takes the representation of a applicationMapping and creates it.  Returns the server's representation of the applicationMapping, and an error, if there is any.
