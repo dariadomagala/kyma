@@ -1,35 +1,25 @@
-{{- $defaultIdpJwksUri := .Values.cluster.defaultIdpJwksUri | default "http://dex-service.kyma-system.svc.cluster.local:5556/keys" -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Chart.Name }}-config
-  namespace: {{ .Release.Namespace }}
+  name: console-web-config
+  namespace: kyma-system
   labels:
     app: console
-    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    chart: console-web-0.2.0
 data:
   config.js: |
     window.clusterConfig = {
-      pamelaApiUrl: 'https://pamela.{{ js .Values.global.ingress.domainName }}',
-      authRedirectUri: 'https://console.{{ js .Values.global.ingress.domainName }}',
       domain: '{{ js .Values.global.ingress.domainName }}',
-      consoleClientId: '{{ js .Values.cluster.consoleClientId }}',
-      scope: '{{ js .Values.cluster.scope }}',
-      orgId: '{{ js .Values.cluster.orgId }}',
-      orgName: '{{ js .Values.cluster.orgName }}',
-      headerLogoUrl: '{{ js .Values.cluster.headerLogoUrl }}',
-      headerTitle: '{{ js .Values.cluster.headerTitle }}',
-      faviconUrl: '{{ js .Values.cluster.faviconUrl }}',
-      gateway_kyma_cx_api_version: 'v1alpha2',
-      disabledNavigationNodes: '{{ js .Values.cluster.disabledNavigationNodes }}',
-      systemNamespaces: '{{ js .Values.cluster.systemNamespaces }}',
-      graphqlApiUrl: 'https://console-backend.{{ js .Values.global.ingress.domainName }}/graphql',
-      subscriptionsApiUrl: 'wss://console-backend.{{ js .Values.global.ingress.domainName }}/graphql',
-      defaultIdpJwksUri: '{{ js $defaultIdpJwksUri }}',
+      headerLogoUrl: 'assets/logo.svg',
+      headerTitle: '',
+      faviconUrl: 'favicon.ico',
+      disabledNavigationNodes: '',
+      systemNamespaces: 'compass-system istio-system knative-eventing knative-serving kube-public kube-system kyma-backup kyma-installer kyma-integration kyma-system natss kube-node-lease kubernetes-dashboard serverless-system',
+      defaultIdpJwksUri: 'http://dex-service.kyma-system.svc.cluster.local:5556/keys',
       defaultIdpIssuer: 'https://dex.{{ js .Values.global.ingress.domainName }}',
-      namespaceAdminGroupName: '{{ js .Values.cluster.namespaceAdminGroupName }}',
-      runtimeAdminGroupName: '{{ js .Values.cluster.runtimeAdminGroupName }}',
-      bebEnabled: '{{ .Values.global.isBEBEnabled }}',
+      namespaceAdminGroupName: 'runtimeNamespaceAdmin',
+      runtimeAdminGroupName: 'runtimeAdmin',
+      bebEnabled: 'false',
       serverless: {
         functionUsageKind: "serverless-function",
         restrictedVariables: [
@@ -48,6 +38,3 @@ data:
         },
       },
     };
-    
-  nginx-extended.conf: |
-    set $kymadomain {{ js .Values.global.ingress.domainName }};
