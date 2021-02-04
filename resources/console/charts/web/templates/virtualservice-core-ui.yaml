@@ -1,13 +1,11 @@
-{{- $serviceName := include "fullname" . -}}
-{{- $servicePort := .Values.core_ui.service.externalPort -}}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: {{ template "fullname" . }}-core-ui
+  name: console-web-core-ui
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ template "name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app: console-web
+    chart: console-web-0.2.0
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -22,5 +20,5 @@ spec:
     route:
     - destination:
         port:
-          number: {{ $servicePort }}
-        host: {{ $serviceName }}-core-ui
+          number: 80
+        host: console-web-core-ui

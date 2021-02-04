@@ -1,25 +1,24 @@
-{{- if .Values.test.acceptance.enabled }}
 kind: ServiceAccount
 apiVersion: v1
 metadata:
-  name: {{ template "fullname" . }}-tests
+  name: console-web-tests
   labels:
-    app: {{ template "fullname" . }}-tests
-    app.kubernetes.io/name: {{ .Chart.Name }}-tests
+    app: console-web-tests
+    app.kubernetes.io/name: console-web-tests
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    helm.sh/chart: console-web-0.2.0
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: {{ template "fullname" . }}-tests
+  name: console-web-tests
   labels:
-    app: {{ template "fullname" . }}-tests
-    app.kubernetes.io/name: {{ template "fullname" . }}-tests
+    app: console-web-tests
+    app.kubernetes.io/name: console-web-tests
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    helm.sh/chart: console-web-0.2.0
 rules:
   - apiGroups: [""]
     resources: ["namespaces"]
@@ -31,19 +30,18 @@ rules:
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
-  name: {{ template "fullname" . }}-tests
+  name: console-web-tests
   labels:
-    app: {{ template "fullname" . }}-tests
-    app.kubernetes.io/name: {{ template "fullname" . }}-tests
+    app: console-web-tests
+    app.kubernetes.io/name: console-web-tests
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    helm.sh/chart: console-web-0.2.0
 subjects:
   - kind: ServiceAccount
-    name: {{ template "fullname" . }}-tests
+    name: console-web-tests
     namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: {{ template "fullname" . }}-tests
-{{- end }}

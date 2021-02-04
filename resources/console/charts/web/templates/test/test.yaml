@@ -2,13 +2,13 @@
 apiVersion: "testing.kyma-project.io/v1alpha1"
 kind: TestDefinition
 metadata:
-  name: {{ template "fullname" . }}
+  name: console-web
   labels:
-    app: {{ template "fullname" . }}
-    app.kubernetes.io/name: {{ template "fullname" . }}
+    app: console-web
+    app.kubernetes.io/name: console-web
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    helm.sh/chart: console-web-0.2.0
     {{- range $key, $val := .Values.test.acceptance.labels }}
     kyma-project.io/test.{{ $key }}: {{ $val | quote }}
     {{- end }}
@@ -21,7 +21,7 @@ spec:
             sidecar.istio.io/inject: "true"
           labels:
             purpose: testing
-            app: {{ template "fullname" . }}-tests
+            app: console-web-tests
         spec:
           {{ if .Values.global.isLocalEnv }}
           hostAliases:
@@ -38,7 +38,7 @@ spec:
               - "storage.{{ .Values.global.ingress.domainName }}"
               - "core-ui.{{ .Values.global.ingress.domainName }}"
           {{ end }}
-          serviceAccountName: {{ template "fullname" . }}-tests
+          serviceAccountName: console-web-tests
           containers:
             - name: tests
               image: {{ .Values.global.containerRegistry.path }}/ui-tests:{{ .Values.global.ui_acceptance_tests.version }}
