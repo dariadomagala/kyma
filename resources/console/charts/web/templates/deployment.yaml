@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: console-web
+  name: {{ template "fullname" . }}
   labels:
-    app: console-web
-    chart: console-web-0.2.0
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     kyma-project.io/component: frontend
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: console-web
+      app: {{ template "fullname" . }}
       release: {{ .Release.Name }}
       # not used anymore but need to stay as the selector is immutable 
       kyma-alerts: enabled
@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       labels:
-        app: console-web
+        app: {{ template "fullname" . }}
         release: {{ .Release.Name }}
         kyma-project.io/component: frontend
         # not used anymore but need to stay as it is used in the selector
@@ -33,36 +33,36 @@ spec:
     spec:
       containers:
         - name: console
-          image: "eu.gcr.io/kyma-project/console:0fa81441"
-          imagePullPolicy: IfNotPresent
+          image: "{{ .Values.containerRegistry.path }}/console:{{ .Values.console.image.tag }}"
+          imagePullPolicy: {{ .Values.console.image.pullPolicy }}
           resources: 
             {{- toYaml .Values.console.resources | nindent 12 }}
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 6080
+              port: {{ .Values.console.statusPort }}
             initialDelaySeconds: 10
           ports:
-            - containerPort: 6080
-            - containerPort: 8080
+            - containerPort: {{ .Values.console.statusPort }}
+            - containerPort: {{ .Values.console.service.internalPort }}
           volumeMounts:
           - name: config
             mountPath: /usr/share/nginx/html/assets/config
           - name: nginx
             mountPath: /usr/share/nginx-extended/
         - name: core-ui
-          image: "eu.gcr.io/kyma-project/core-ui:491eab72"
-          imagePullPolicy: IfNotPresent
+          image: "{{ .Values.containerRegistry.path }}/core-ui:{{ .Values.core_ui.image.tag }}"
+          imagePullPolicy: {{ .Values.core_ui.image.pullPolicy }}
           resources: 
             {{- toYaml .Values.core_ui.resources | nindent 12 }}
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 6081
+              port: {{ .Values.core_ui.statusPort }}
             initialDelaySeconds: 10
           ports:
-            - containerPort: 6081
-            - containerPort: 80
+            - containerPort: {{ .Values.core_ui.statusPort }}
+            - containerPort: {{ .Values.core_ui.service.internalPort }}
           volumeMounts:
             - name: config
               mountPath: /var/public/config
@@ -71,7 +71,13 @@ spec:
       volumes:
       - name: config
         configMap:
-          name: console-web-config
+          name: {{ .Chart.Name }}-config
           items:
           - key: config.js
             path: config.js
+      - name: nginx
+        configMap:
+          name: {{ .Chart.Name }}-config
+          items:
+          - key: nginx-extended.conf
+            path: nginx-extended.conf

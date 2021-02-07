@@ -1,21 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: console-web
+  name: {{ template "fullname" . }}
   labels:
-    app: console-web
-    chart: console-web-0.2.0
+    app: console-{{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   ports:
-    - port: 80
+    - port: {{ .Values.console.service.externalPort }}
       name: http2-console
-      targetPort: 80
-    - port: 6080
+      targetPort: {{ .Values.console.service.internalPort }}
+    - port: {{ .Values.console.statusPort }}
       name: status-port-console
-      targetPort: 6080
+      targetPort: {{ .Values.console.statusPort }}
   selector:
-    app: console-web
+    app: console-{{ template "name" . }}
     release: {{ .Release.Name }}
-

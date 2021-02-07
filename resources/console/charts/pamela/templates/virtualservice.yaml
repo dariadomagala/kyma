@@ -20,9 +20,9 @@ metadata:
 {{- end }}
 spec:
   hosts:
-  - '{{ .Values.virtualservice.host }}.{{ .Values.global.ingress.domainName }}'
+  - '{{ .Values.virtualservice.host }}.{{ .Values.domainName }}'
   gateways:
-  - {{ .Values.global.istio.gateway.name }}
+  - kyma-gateway
   http:
   - match:
     - uri:

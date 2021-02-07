@@ -1,9 +1,9 @@
 apiVersion: "networking.istio.io/v1alpha3"
 kind: "DestinationRule"
 metadata:
-  name: console-web-core-ui
+  name: {{ template "fullname" . }}-core-ui
 spec:
-  host: console-web-core-ui.{{ .Release.Namespace }}.svc.cluster.local
+  host: {{ template "fullname" . }}-core-ui.{{ .Release.Namespace }}.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE

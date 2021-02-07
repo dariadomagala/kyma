@@ -2,12 +2,6 @@ dex:
   tls:
     createSecret: false
 
-console:
-  cluster:
-    headerLogoUrl: "assets/logo.svg"
-    headerTitle: ""
-    faviconUrl: "favicon.ico"
-
 global:
   isLocalEnv: false
   isBEBEnabled: false
@@ -18,9 +12,6 @@ global:
   kymaOrgName: "kyma-project"
   containerRegistry:
     path: eu.gcr.io/kyma-project
-  istio:
-    gateway:
-      name: kyma-gateway
   ui_acceptance_tests:
     version: "37b09dbb"
   console_backend_service:
