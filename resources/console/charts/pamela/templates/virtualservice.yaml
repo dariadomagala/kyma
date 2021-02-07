@@ -22,7 +22,7 @@ spec:
   hosts:
   - '{{ .Values.virtualservice.host }}.{{ .Values.domainName }}'
   gateways:
-  - kyma-gateway
+  - {{ .Values.istio.gateway.name }}
   http:
   - match:
     - uri:
