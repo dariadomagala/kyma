@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: console
-          image: "wawrzyn321/core"
+          image: wawrzyn321/console-standalone
           imagePullPolicy: IfNotPresent
           resources: {}
           livenessProbe:
@@ -43,7 +43,7 @@ spec:
           - name: config
             mountPath: /usr/share/nginx/html/assets/config
         - name: core-ui
-          image: "eu.gcr.io/kyma-project/core-ui:491eab72"
+          image: wawrzyn321/core-ui-standalone
           imagePullPolicy: IfNotPresent
           resources: {}
           livenessProbe:
