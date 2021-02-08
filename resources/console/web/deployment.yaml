@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: console
+  name: console-web
   labels:
     app: console
     kyma-project.io/component: frontend
@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: console
-          image: "eu.gcr.io/kyma-project/console:0fa81441"
+          image: "wawrzyn321/core"
           imagePullPolicy: IfNotPresent
           resources: {}
           livenessProbe:
@@ -42,8 +42,6 @@ spec:
           volumeMounts:
           - name: config
             mountPath: /usr/share/nginx/html/assets/config
-          - name: nginx
-            mountPath: /usr/share/nginx-extended/
         - name: core-ui
           image: "eu.gcr.io/kyma-project/core-ui:491eab72"
           imagePullPolicy: IfNotPresent
@@ -59,8 +57,6 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /var/public/config
-            - name: nginx
-              mountPath: /usr/share/nginx-extended/
       volumes:
       - name: config
         configMap:
@@ -68,9 +64,3 @@ spec:
           items:
           - key: config.js
             path: config.js
-      - name: nginx
-        configMap:
-          name: console-config
-          items:
-          - key: nginx-extended.conf
-            path: nginx-extended.conf

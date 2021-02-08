@@ -20,10 +20,9 @@ spec:
         app: pamela
         kyma-project.io/component: backend
     spec:
-      serviceAccountName: console-backend
       containers:
       - name: pamela
-        image: "eu.gcr.io/kyma-project/pamela:ff2715e2"
+        image: wawrzyn321/pam:latest
         imagePullPolicy: IfNotPresent
         securityContext:
           allowPrivilegeEscalation: false
@@ -38,10 +37,10 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-        volumeMounts:
-          - name: ingress-tls-cert
-            mountPath: /etc/ingress-tls-cert/
-      volumes:
-        - name: ingress-tls-cert
-          secret:
-            secretName: ingress-tls-cert
+      #   volumeMounts:
+      #     - name: ingress-tls-cert
+      #       mountPath: /etc/ingress-tls-cert/
+      # volumes:
+      #   - name: ingress-tls-cert
+      #     secret:
+      #       secretName: ingress-tls-cert

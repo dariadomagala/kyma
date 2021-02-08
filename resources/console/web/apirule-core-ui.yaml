@@ -1,0 +1,23 @@
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  generation: 1
+  name: core-ui
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+  - accessStrategies:
+    - config: {}
+      handler: noop
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - HEAD
+    path: /.*
+  service:
+    host: core-ui.biggie.hasselhoff.shoot.canary.k8s-hana.ondemand.com
+    name: console-core-ui
+    port: 80
