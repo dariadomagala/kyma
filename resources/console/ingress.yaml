@@ -1,0 +1,35 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ingress-core
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  rules:
+  - host: console.ingress.tets.hasselhoff.shoot.canary.k8s-hana.ondemand.com
+    http:
+      paths:
+      - path: /core
+        pathType: Prefix
+        backend:
+          service:
+            name: console-core
+            port:
+              number: 8080
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ingress-pamela
+spec:
+  rules:
+  - host: console.ingress.tets.hasselhoff.shoot.canary.k8s-hana.ondemand.com
+    http:
+      paths:
+      - path: /pamela
+        pathType: Prefix
+        backend:
+          service:
+            name: pamela
+            port:
+              number: 3001
