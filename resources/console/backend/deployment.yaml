@@ -34,6 +34,9 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        env:
+          - name: ADDRESS
+            value: "0.0.0.0"
       #   volumeMounts:
       #     - name: ingress-tls-cert
       #       mountPath: /etc/ingress-tls-cert/
