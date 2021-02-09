@@ -27,9 +27,6 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           privileged: false
-        env:
-          - name: jwksUri
-            value: "https://dex.kyma.local/keys"
         ports:
         - containerPort: 3001
           name: http-pamela

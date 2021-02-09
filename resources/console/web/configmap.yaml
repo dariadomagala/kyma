@@ -7,8 +7,8 @@ metadata:
 data:
   config.js: |
     window.clusterConfig = {
-      domain: 'biggie.hasselhoff.shoot.canary.k8s-hana.ondemand.com',
-      pamelaApiUrl: 'https://pamela2.biggie.hasselhoff.shoot.canary.k8s-hana.ondemand.com',
+      domain: 'ingress.hasselhoff.shoot.canary.k8s-hana.ondemand.com',
+      pamelaApiUrl: 'https://pamela.ingress.hasselhoff.shoot.canary.k8s-hana.ondemand.com',
       headerLogoUrl: 'assets/logo.svg',
       headerTitle: '',
       faviconUrl: 'favicon.ico',

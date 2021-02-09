@@ -7,5 +7,4 @@ resources:
   - deployment.yaml
   - service-core-ui.yaml
   - service-core.yaml
-  - apirule-core-ui.yaml
-  - apirule-core.yaml
+  - ingress-core.yaml
