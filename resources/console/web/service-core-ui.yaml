@@ -6,9 +6,9 @@ metadata:
     app: console
 spec:
   ports:
-    - port: 80
+    - port: 8080
       name: http2-core-ui
-      targetPort: 80
+      targetPort: 8080
     - port: 6081
       name: status-port-core-ui
       targetPort: 6081
