@@ -3,8 +3,9 @@ kind: Kustomization
 commonLabels:
   app: web
 resources:
+  - clustermicrofrontend.yaml
   - configmap.yaml
   - deployment.yaml
   - service-core-ui.yaml
   - service-core.yaml
-  - ingress-core.yaml
+  - ingress.yaml

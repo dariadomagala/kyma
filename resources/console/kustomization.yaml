@@ -6,7 +6,6 @@ resources:
   - backendmodules.ui.crd.yaml
   - backendmodule.yaml
   - kubernetes-dashboard-admin.yaml
-  - ingress.yaml
 bases:
   - backend
   - web

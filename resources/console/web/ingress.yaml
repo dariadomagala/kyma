@@ -24,20 +24,3 @@ spec:
             name: console-core-ui
             port:
               number: 8080
----
-kind: Ingress
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ingress-pamela
-spec:
-  rules:
-  - host: pamela.ingress.tets.hasselhoff.shoot.canary.k8s-hana.ondemand.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: pamela
-            port:
-              number: 3001
