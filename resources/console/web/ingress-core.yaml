@@ -1,0 +1,16 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: console-core
+spec:
+  rules:
+  - host: "*.kyma.local"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: console-core
+            port:
+              number: 80 
