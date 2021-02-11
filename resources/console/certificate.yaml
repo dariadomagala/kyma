@@ -8,5 +8,3 @@ spec:
   secretRef:
     name: cert-wildcard
     namespace: default
-issuerRef:
-  name: letsencrypt-production
