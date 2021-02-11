@@ -37,6 +37,8 @@ spec:
         env:
           - name: ADDRESS
             value: "0.0.0.0"
+          - name: NODE_TLS_REJECT_UNAUTHORIZED
+            value: 0
       #   volumeMounts:
       #     - name: ingress-tls-cert
       #       mountPath: /etc/ingress-tls-cert/
