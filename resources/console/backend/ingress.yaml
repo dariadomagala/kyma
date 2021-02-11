@@ -4,7 +4,7 @@ metadata:
   name: ingress-pamela
 spec:
   rules:
-  - host: pamela.ingress.tets.hasselhoff.shoot.canary.k8s-hana.ondemand.com
+  - host: pamela.ingress.chill.kyma.fun
     http:
       paths:
       - path: /

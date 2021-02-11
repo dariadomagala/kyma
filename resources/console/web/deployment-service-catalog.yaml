@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-catalog
+  labels:
+    app: service-catalog
+    kyma-project.io/component: frontend
+spec:
+  selector:
+    matchLabels:
+      app: service-catalog
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-catalog
+        kyma-project.io/component: frontend
+    spec:
+      containers:
+        - name: service-catalog
+          image: "eu.gcr.io/kyma-project/service-catalog-ui:0fa81441"
+          imagePullPolicy: IfNotPresent
+          resources: {}
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+          - name: config
+            mountPath: /var/public/config
+      volumes:
+      - name: config
+        configMap:
+          name: console-config
+          items:
+          - key: config.js
+            path: config.js

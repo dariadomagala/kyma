@@ -6,6 +6,8 @@ resources:
   - clustermicrofrontend.yaml
   - configmap.yaml
   - deployment.yaml
+  - deployment-service-catalog.yaml
   - service-core-ui.yaml
   - service-core.yaml
+  - service-service-catalog.yaml
   - ingress.yaml

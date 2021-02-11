@@ -4,7 +4,7 @@ metadata:
   name: ingress-core
 spec:
   rules:
-  - host: core.ingress.tets.hasselhoff.shoot.canary.k8s-hana.ondemand.com
+  - host: core.ingress.chill.kyma.fun
     http:
       paths:
       - path: /
@@ -14,7 +14,7 @@ spec:
             name: console-core
             port:
               number: 8080
-  - host: core-ui.ingress.tets.hasselhoff.shoot.canary.k8s-hana.ondemand.com
+  - host: core-ui.ingress.chill.kyma.fun
     http:
       paths:
       - path: /
@@ -22,5 +22,15 @@ spec:
         backend:
           service:
             name: console-core-ui
+            port:
+              number: 8080
+  - host: catalog-ui.ingress.chill.kyma.fun
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-catalog
             port:
               number: 8080
