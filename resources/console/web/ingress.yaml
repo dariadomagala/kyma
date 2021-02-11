@@ -5,14 +5,9 @@ metadata:
   annotations:
     ingress.kubernetes.io/cache-enable: "false"    
     cert.gardener.cloud/purpose: managed
-    cert.gardener.cloud/issuer: letsencrypt-production
-  # annotations:
-  #   nginx.ingress.kubernetes.io/backend-protocol: "true"
 spec:
   tls:
-  - hosts:
-    - "*.ingress.chill.kyma.fun"
-    secretName: cert-wildcard  
+  - secretName: cert-wildcard  
   rules:
   - host: core.ingress.chill.kyma.fun
     http:
