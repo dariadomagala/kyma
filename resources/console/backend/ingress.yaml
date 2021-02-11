@@ -2,9 +2,17 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: ingress-pamela
+  annotations:
+    ingress.kubernetes.io/cache-enable: "false"    
+    cert.gardener.cloud/purpose: managed
+    cert.gardener.cloud/issuer: letsencrypt-production
 spec:
+  tls:
+  - hosts:
+    - "*.ingress.chill.kyma.fun"
+    secretName: cert-wildcard  
   rules:
-  - host: pamela.ingress.tets.hasselhoff.shoot.canary.k8s-hana.ondemand.com
+  - host: pamela.ingress.chill.kyma.fun
     http:
       paths:
       - path: /

@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: console
-          image: wawrzyn321/core-no-http2
+          image: wawrzyn321/console
           imagePullPolicy: Always
           resources: {}
           livenessProbe:
@@ -43,7 +43,7 @@ spec:
           - name: config
             mountPath: /usr/share/nginx/html/assets/config
         - name: core-ui
-          image: wawrzyn321/core-ui-no-http2
+          image: wawrzyn321/core-ui
           imagePullPolicy: Always
           resources: {}
           livenessProbe:
@@ -53,7 +53,7 @@ spec:
             initialDelaySeconds: 10
           ports:
             - containerPort: 6081
-            - containerPort: 8080
+            - containerPort: 80
           volumeMounts:
             - name: config
               mountPath: /var/public/config

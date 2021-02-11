@@ -3,6 +3,7 @@ kind: Kustomization
 # configurations:
 #   - k-config.yaml  
 resources:
+  - certificate.yaml
   - backendmodules.ui.crd.yaml
   - backendmodule.yaml
   - kubernetes-dashboard-admin.yaml
