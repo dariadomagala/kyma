@@ -53,7 +53,7 @@ spec:
             initialDelaySeconds: 10
           ports:
             - containerPort: 6081
-            - containerPort: 8080
+            - containerPort: 80
           volumeMounts:
             - name: config
               mountPath: /var/public/config

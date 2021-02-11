@@ -1,0 +1,12 @@
+kind: Certificate
+apiVersion: cert.gardener.cloud/v1alpha1
+metadata:
+  name: cert-wildcard
+  namespace: default
+spec:
+  commonName: "*.ingress.chill.kyma.fun"
+  secretRef:
+    name: cert-wildcard
+    namespace: default
+issuerRef:
+  name: letsencrypt-production

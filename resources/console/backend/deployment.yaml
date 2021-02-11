@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: pamela
-        image: wawrzyn321/pam:latest
+        image: wawrzyn321/pamela
         imagePullPolicy: IfNotPresent
         securityContext:
           allowPrivilegeEscalation: false
