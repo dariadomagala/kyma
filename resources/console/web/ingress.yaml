@@ -29,7 +29,7 @@ spec:
             name: console-core-ui
             port:
               number: 8080
-  - host: catalog-ui.ingress.chill.kyma.fun
+  - host: catalog.ingress.chill.kyma.fun
     http:
       paths:
       - path: /
