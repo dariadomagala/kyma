@@ -7,8 +7,8 @@ metadata:
 data:
   config.js: |
     window.clusterConfig = {
-      domain: 'ingress.chill.kyma.fun',
-      pamelaApiUrl: 'https://pamela.ingress.chill.kyma.fun',
+      domain: '%DOMAIN%',
+      pamelaApiUrl: 'https://pamela.%DOMAIN%',
       headerLogoUrl: 'assets/logo.svg',
       headerTitle: '',
       faviconUrl: 'favicon.ico',

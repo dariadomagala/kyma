@@ -2,9 +2,7 @@ kind: Certificate
 apiVersion: cert.gardener.cloud/v1alpha1
 metadata:
   name: cert-wildcard
-  namespace: default
 spec:
-  commonName: "*.ingress.chill.kyma.fun"
+  commonName: "*.%DOMAIN%"
   secretRef:
     name: cert-wildcard
-    namespace: default
