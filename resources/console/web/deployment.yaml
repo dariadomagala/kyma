@@ -10,21 +10,10 @@ spec:
   selector:
     matchLabels:
       app: console
-      # not used anymore but need to stay as the selector is immutable 
-      kyma-alerts: enabled
-      kyma-component: ui
-      kyma-grafana: enabled
   template:
     metadata:
       labels:
         app: console
-        kyma-project.io/component: frontend
-        # not used anymore but need to stay as it is used in the selector
-        kyma-alerts: enabled
-        kyma-component: ui
-        kyma-grafana: enabled
-      annotations:
-        sidecar.istio.io/inject: "false"
     spec:
       containers:
         - name: console

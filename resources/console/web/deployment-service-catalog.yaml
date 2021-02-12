@@ -4,7 +4,6 @@ metadata:
   name: service-catalog
   labels:
     app: service-catalog
-    kyma-project.io/component: frontend
 spec:
   selector:
     matchLabels:
@@ -14,7 +13,6 @@ spec:
     metadata:
       labels:
         app: service-catalog
-        kyma-project.io/component: frontend
     spec:
       containers:
         - name: service-catalog
@@ -22,7 +20,7 @@ spec:
           imagePullPolicy: IfNotPresent
           resources: {}
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           volumeMounts:
           - name: config
             mountPath: /var/public/config
